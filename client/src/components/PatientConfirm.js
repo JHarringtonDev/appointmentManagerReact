@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
+import { API_BASE } from "../apiConfig";
  
 export default function PatientConfirm() {
   const [records, setRecords] = useState([]);
@@ -15,7 +16,7 @@ export default function PatientConfirm() {
    async function fetchData() {
      const id = params.id.toString();
      
-     const response = await fetch(`https://appointmentmanagerreact.onrender.com/record/${params.id.toString()}`);
+  const response = await fetch(`${API_BASE}/record/${params.id.toString()}`);
      gId = params.id.toString();
  
      if (!response.ok) {
@@ -41,7 +42,7 @@ export default function PatientConfirm() {
     fetchData();
 
     async function getRecords() {
-      const response = await fetch(`https://appointmentmanagerreact.onrender.com/record/`);
+  const response = await fetch(`${API_BASE}/record/`);
   
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
@@ -75,7 +76,7 @@ const result = records.find( ({ _id }) => _id === gId );
    };
   if(form.phoneNumber == result.phoneNumber){
     // This will send a post request to update the data in the database.
-   await fetch(`https://appointmentmanagerreact.onrender.com/update/${params.id}`, {
+  await fetch(`${API_BASE}/update/${params.id}`, {
     method: "POST",
     body: JSON.stringify(editedPerson),
     headers: {

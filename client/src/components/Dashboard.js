@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Logout from './Logout'
 import LoginButton from './LoginButton'
+import { API_BASE } from "../apiConfig";
 
 let newTime
  
@@ -39,7 +40,7 @@ export default function Dashboard() {
  // This method fetches the records from the database.
  useEffect(() => {
    async function getRecords() {
-     const response = await fetch(`https://appointmentmanagerreact.onrender.com/record/`);
+  const response = await fetch(`${API_BASE}/record/`);
  
      if (!response.ok) {
        const message = `An error occurred: ${response.statusText}`;
@@ -58,7 +59,7 @@ export default function Dashboard() {
  
  // This method will delete a record
  async function deleteRecord(id) {
-   await fetch(`https://appointmentmanagerreact.onrender.com/${id}`, {
+  await fetch(`${API_BASE}/${id}`, {
      method: "DELETE"
    });
  

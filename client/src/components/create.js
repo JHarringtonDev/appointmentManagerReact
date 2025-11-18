@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import { API_BASE } from "../apiConfig";
  
 export default function Create() {
  const [form, setForm] = useState({
@@ -23,7 +24,7 @@ export default function Create() {
    // When a post request is sent to the create url, we'll add a new record to the database.
    const newPerson = { ...form };
  
-   await fetch("https://appointmentmanagerreact.onrender.com/record/add", {
+  await fetch(`${API_BASE}/record/add`, {
      method: "POST",
      headers: {
        "Content-Type": "application/json",
