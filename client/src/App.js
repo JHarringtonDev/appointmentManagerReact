@@ -11,7 +11,7 @@ import PatientConfirm from "./components/PatientConfirm";
 
 
 function App() {
-
+// Returns the main App component with routing to different pages
   return (
     <div className="App">
       <Header />

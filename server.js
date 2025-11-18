@@ -9,7 +9,21 @@ app.use(express.json());
 app.use(require("./routes/record"));
 // get driver connection
 const dbo = require("./db/conn");
- 
+
+// server.js (or top of file where you use cors)
+const allowedOrigins = ['https://jharringtondev.github.io', 'http://localhost:3000'];
+app.use(cors({
+  origin: function(origin, callback){
+    // allow requests with no origin (like curl, mobile apps)
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  }
+}));
+
 app.listen(port, () => {
   // perform a database connection when server starts
   dbo.connectToServer(function (err) {
@@ -27,11 +41,20 @@ app.use('/login', (req, res) => {
 });
 
 if(process.env.NODE_ENV === "production"){
-  app.use(express.static(path.join(__dirname,'/client/build')))
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client','build','index.html'))
-  })
+  // Only serve the client build if it exists. On some hosts (or during
+  // intermediate deploys) the client may be deployed separately (e.g. to
+  // GitHub Pages) and `client/build` won't exist on the server. Avoid
+  // crashing with ENOENT by checking for the file first.
+  const fs = require('fs');
+  const clientIndex = path.join(__dirname, 'client', 'build', 'index.html');
+  if (fs.existsSync(clientIndex)) {
+    app.use(express.static(path.join(__dirname, 'client', 'build')));
+    app.get('*', (req, res) => {
+      res.sendFile(clientIndex);
+    });
+  } else {
+    console.warn('Production mode but client/build/index.html not found — skipping static file serving.');
+  }
 } else {
   app.get('/', (req, res) => {
     res.send('API RUNNING')
