@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.ad5c1d51.css",
-    "main.js": "/static/js/main.db4794ff.js",
-    "static/media/Journey-Full-Logo.png": "/static/media/Journey-Full-Logo.971b57b2cea79aed24de.png",
-    "index.html": "/index.html",
-    "main.ad5c1d51.css.map": "/static/css/main.ad5c1d51.css.map",
-    "main.db4794ff.js.map": "/static/js/main.db4794ff.js.map"
+    "main.css": "/appointmentManagerReact/static/css/main.dd03c541.css",
+    "main.js": "/appointmentManagerReact/static/js/main.18934ba4.js",
+    "static/media/default-monochrome-white.png": "/appointmentManagerReact/static/media/default-monochrome-white.950443746c4db06924a8.png",
+    "index.html": "/appointmentManagerReact/index.html",
+    "main.dd03c541.css.map": "/appointmentManagerReact/static/css/main.dd03c541.css.map",
+    "main.18934ba4.js.map": "/appointmentManagerReact/static/js/main.18934ba4.js.map"
   },
   "entrypoints": [
-    "static/css/main.ad5c1d51.css",
-    "static/js/main.db4794ff.js"
+    "static/css/main.dd03c541.css",
+    "static/js/main.18934ba4.js"
   ]
 }
