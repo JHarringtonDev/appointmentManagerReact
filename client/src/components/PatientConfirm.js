@@ -15,7 +15,7 @@ export default function PatientConfirm() {
    async function fetchData() {
      const id = params.id.toString();
      
-     const response = await fetch(`https://appointment-manager-react.herokuapp.com/record/${params.id.toString()}`);
+     const response = await fetch(`https://appointmentmanagerreact.onrender.com/record/${params.id.toString()}`);
      gId = params.id.toString();
  
      if (!response.ok) {
@@ -41,7 +41,7 @@ export default function PatientConfirm() {
     fetchData();
 
     async function getRecords() {
-      const response = await fetch(`https://appointment-manager-react.herokuapp.com/record/`);
+      const response = await fetch(`https://appointmentmanagerreact.onrender.com/record/`);
   
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
@@ -75,7 +75,7 @@ const result = records.find( ({ _id }) => _id === gId );
    };
   if(form.phoneNumber == result.phoneNumber){
     // This will send a post request to update the data in the database.
-   await fetch(`https://appointment-manager-react.herokuapp.com/update/${params.id}`, {
+   await fetch(`https://appointmentmanagerreact.onrender.com/update/${params.id}`, {
     method: "POST",
     body: JSON.stringify(editedPerson),
     headers: {
